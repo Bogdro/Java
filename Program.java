@@ -183,7 +183,8 @@ public class Program
             Plansza p;                                         
             p=new Plansza();                                   
                                                                
-            JFrame jf=new JFrame();                            
+            JFrame jf=new JFrame();
+			jf.setResizable(false);
             jf.add(p);                                         
                                                                
             jf.setTitle("Test grafiki");                       

@@ -31,6 +31,22 @@ class Klocek extends Rectangle2D.Float
 		this.height = 40;
 	}
 }
+class Bombka extends Ellipse2D.Float
+{
+	Bombka(float x, float y)
+	{
+		this.x = x;
+		this.y = y;
+		this.width = 10;
+		this.height = 10;
+	}
+	
+	void ustawBombe(float bPozX, float bPozY)
+	{
+		this.x = bPozX;
+		this.y = bPozY;
+	}
+}
 
 
 
@@ -77,7 +93,10 @@ public class Program extends JFrame implements KeyListener
 	private int szerokoscOkna = 680;
 	private int wysokoscOkna = 520;
 	static Player gracz = new Player(pozX, pozY);
-        
+	static float bPozX, bPozY;
+	Bombka bombka = new Bombka(bPozX, bPozY);
+	static int bomba;
+
 	
 	public Program()
 	{		
@@ -105,25 +124,30 @@ public class Program extends JFrame implements KeyListener
 			{
 				g2d.fill(cegla);
 			}
+		if (bomba == 1)
+		{
+			g2d.fill(bombka);
+		}
     }
-
     public void keyTyped(KeyEvent e) {        }
 	
     public void keyPressed(KeyEvent e) 
 	{
 		switch(e.getKeyChar())
 		{
+				case 'k':
+						{
+						System.out.println("stawiam bombke");
+						bomba = 1;
+						bombka.ustawBombe(gracz.x+15, gracz.y + 40);						
+						}		
+						break;
                 case 'w':
-						System.out.println("gracz");
-						System.out.println(gracz.x);
-						
                         for (Klocek klocek:Plansza.klocki)
 						{
 							
 							if (gracz.y == klocek.y +40 && gracz.x < klocek.x + 30 && gracz.x > klocek.x - 30)
-							{					
-								System.out.println("klocek");
-								System.out.println(klocek.x);						
+							{											
 								gracz.przesunGracza(0 , 5);
 							}
 						}
@@ -134,9 +158,7 @@ public class Program extends JFrame implements KeyListener
 						{
 							
 							if (gracz.y == klocek.y -30 && gracz.x < klocek.x + 30 && gracz.x > klocek.x - 30)
-							{					
-								System.out.println("klocek");
-								System.out.println(klocek.x);						
+							{										
 								gracz.przesunGracza(0 , -5);
 							}
 						}
@@ -147,9 +169,7 @@ public class Program extends JFrame implements KeyListener
 						{
 							
 							if (gracz.x == klocek.x +40 && gracz.y < klocek.y + 30 && gracz.y > klocek.y - 30)
-							{					
-								System.out.println("klocek");
-								System.out.println(klocek.x);						
+							{										
 								gracz.przesunGracza(5 , 0);
 							}
 						}
@@ -160,9 +180,7 @@ public class Program extends JFrame implements KeyListener
 						{
 							
 							if (gracz.x == klocek.x -30 && gracz.y < klocek.y + 30 && gracz.y > klocek.y - 30)
-							{					
-								System.out.println("klocek");
-								System.out.println(klocek.x);						
+							{										
 								gracz.przesunGracza(-5 , 0);
 							}
 						}

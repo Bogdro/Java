@@ -187,7 +187,7 @@ public class Program
             jf.add(p);                                         
                                                                
             jf.setTitle("Test grafiki");                       
-            jf.setSize(400,370);                               
+            jf.setSize(640,480);                               
             jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
             jf.setVisible(true);                               
          }                                                     

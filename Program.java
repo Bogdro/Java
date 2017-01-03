@@ -185,6 +185,7 @@ public class Program
                                                                
             JFrame jf=new JFrame();
 			jf.setResizable(false);
+			//tutaj
             jf.add(p);                                         
                                                                
             jf.setTitle("Test grafiki");                       

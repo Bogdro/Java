@@ -31,12 +31,12 @@ class Klocek extends Rectangle2D.Float
 		this.height = 40;
 	}
 }
-class Bombka extends Ellipse2D.Float
+class Bomba extends Ellipse2D.Float
 {
-	Bombka(float x, float y)
+	Bomba(float x, float y)
 	{
-		this.x = x;
-		this.y = y;
+		this.x = x - 5;
+		this.y = y - 5;
 		this.width = 10;
 		this.height = 10;
 	}
@@ -94,8 +94,7 @@ public class Program extends JFrame implements KeyListener
 	private int wysokoscOkna = 520;
 	static Player gracz = new Player(pozX, pozY);
 	static float bPozX, bPozY;
-	Bombka bombka = new Bombka(bPozX, bPozY);
-	static int bomba;
+	Bomba bomba;
 
 	
 	public Program()
@@ -124,9 +123,9 @@ public class Program extends JFrame implements KeyListener
 			{
 				g2d.fill(cegla);
 			}
-		if (bomba == 1)
+		if (bomba != null)
 		{
-			g2d.fill(bombka);
+			g2d.fill(bomba);
 		}
     }
     public void keyTyped(KeyEvent e) {        }
@@ -137,9 +136,10 @@ public class Program extends JFrame implements KeyListener
 		{
 				case 'k':
 						{
-						System.out.println("stawiam bombke");
-						bomba = 1;
-						bombka.ustawBombe(gracz.x+15, gracz.y + 40);						
+						//System.out.println("stawiam bombke");
+						//bomba = 1;
+						//bombka.ustawBombe(gracz.x+15, gracz.y + 40);
+						bomba = new Bomba(gracz.x + 15, gracz.y + 15);
 						}		
 						break;
                 case 'w':

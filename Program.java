@@ -143,48 +143,44 @@ public class Program extends JFrame implements KeyListener
 						}		
 						break;
                 case 'w':
+						gracz.przesunGracza(0, -5);
                         for (Klocek klocek:Plansza.klocki)
 						{
-							
-							if (gracz.y == klocek.y +40 && gracz.x < klocek.x + 30 && gracz.x > klocek.x - 30)
-							{											
-								gracz.przesunGracza(0 , 5);
-							}
+							if(gracz.intersects(klocek)) gracz.przesunGracza(0,5);
 						}
-						gracz.przesunGracza(0, -5);
 						break;
 				case 's':
+						gracz.przesunGracza(0, 5);
                         for (Klocek klocek:Plansza.klocki)
 						{
 							
-							if (gracz.y == klocek.y -30 && gracz.x < klocek.x + 30 && gracz.x > klocek.x - 30)
+							if (gracz.intersects(klocek))
 							{										
 								gracz.przesunGracza(0 , -5);
 							}
 						}
-						gracz.przesunGracza(0, 5);
                         break;
                 case 'a':
+						gracz.przesunGracza(-5,0);
                         for (Klocek klocek:Plansza.klocki)
 						{
 							
-							if (gracz.x == klocek.x +40 && gracz.y < klocek.y + 30 && gracz.y > klocek.y - 30)
+							if (gracz.intersects(klocek))
 							{										
 								gracz.przesunGracza(5 , 0);
 							}
 						}
-						gracz.przesunGracza(-5, 0);
                         break;
                 case 'd':
+						gracz.przesunGracza(5,0);
                         for (Klocek klocek:Plansza.klocki)
 						{
 							
-							if (gracz.x == klocek.x -30 && gracz.y < klocek.y + 30 && gracz.y > klocek.y - 30)
+							if (gracz.intersects(klocek))
 							{										
 								gracz.przesunGracza(-5 , 0);
 							}
 						}
-						gracz.przesunGracza(5, 0);
                         break;
         }
                 repaint();

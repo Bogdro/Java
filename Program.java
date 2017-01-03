@@ -10,8 +10,14 @@ class Player extends Ellipse2D.Float
 	{
 		this.x = pozX;
 		this.y = pozY;
-		this.width = 40;
-		this.height = 40;
+		this.width = 30;
+		this.height = 30;
+	}
+	
+	void przesunGracza(int pozX, int pozY)
+	{
+		this.x += pozX;
+		this.y += pozY;
 	}
 }
 
@@ -67,9 +73,11 @@ class Plansza
 
 public class Program extends JFrame implements KeyListener
 {
-	static int pozX = 100, pozY = 0;	
+	static int pozX = 40, pozY = 40;	
 	private int szerokoscOkna = 680;
 	private int wysokoscOkna = 520;
+	static Player gracz = new Player(pozX, pozY);
+        
 	
 	public Program()
 	{		
@@ -90,8 +98,7 @@ public class Program extends JFrame implements KeyListener
 	
 	public void paint(Graphics g) 
 	{
-		Player gracz = new Player(pozX, pozY);
-        super.paint(g);
+		super.paint(g);
 		Graphics2D g2d=(Graphics2D)g;
         g2d.fill(gracz);
 		for (Klocek cegla:Plansza.klocki)
@@ -107,28 +114,59 @@ public class Program extends JFrame implements KeyListener
 		switch(e.getKeyChar())
 		{
                 case 'w':
-                        if ( pozY >= 55)
-						{							
-							pozY -= 5;
+						System.out.println("gracz");
+						System.out.println(gracz.x);
+						
+                        for (Klocek klocek:Plansza.klocki)
+						{
+							
+							if (gracz.y == klocek.y +40 && gracz.x < klocek.x + 30 && gracz.x > klocek.x - 30)
+							{					
+								System.out.println("klocek");
+								System.out.println(klocek.x);						
+								gracz.przesunGracza(0 , 5);
+							}
 						}
+						gracz.przesunGracza(0, -5);
 						break;
 				case 's':
-                        if (pozY <= wysokoscOkna - 45)
-						{							
-							pozY += 5;
+                        for (Klocek klocek:Plansza.klocki)
+						{
+							
+							if (gracz.y == klocek.y -30 && gracz.x < klocek.x + 30 && gracz.x > klocek.x - 30)
+							{					
+								System.out.println("klocek");
+								System.out.println(klocek.x);						
+								gracz.przesunGracza(0 , -5);
+							}
 						}
+						gracz.przesunGracza(0, 5);
                         break;
                 case 'a':
-                        if (pozX >= 25 )
+                        for (Klocek klocek:Plansza.klocki)
 						{
-							pozX -= 5;
+							
+							if (gracz.x == klocek.x +40 && gracz.y < klocek.y + 30 && gracz.y > klocek.y - 30)
+							{					
+								System.out.println("klocek");
+								System.out.println(klocek.x);						
+								gracz.przesunGracza(5 , 0);
+							}
 						}
+						gracz.przesunGracza(-5, 0);
                         break;
                 case 'd':
-                        if (pozX <= szerokoscOkna - 45)
+                        for (Klocek klocek:Plansza.klocki)
 						{
-							pozX += 5;
+							
+							if (gracz.x == klocek.x -30 && gracz.y < klocek.y + 30 && gracz.y > klocek.y - 30)
+							{					
+								System.out.println("klocek");
+								System.out.println(klocek.x);						
+								gracz.przesunGracza(-5 , 0);
+							}
 						}
+						gracz.przesunGracza(5, 0);
                         break;
         }
                 repaint();

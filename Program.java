@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.geom.*;
 import java.util.ArrayList;
 
-class Player extends Rectangle2D.Float
+class Player extends Ellipse2D.Float
 {
 	Player(int pozX, int pozY)
 	{
@@ -14,6 +14,36 @@ class Player extends Rectangle2D.Float
 		this.height = 20;
 	}
 }
+
+class Klocek extends Rectangle2D.Float
+{
+	Klocek(int x, int y)
+	{
+		this.x = x;
+		this.y = y;
+		this.width = 20;
+		this.height = 20;
+	}
+}
+
+class Plansza 
+{
+	static ArrayList<Klocek> klocki = new ArrayList<Klocek>();
+	Plansza()
+	{
+		for (int i = 0; i < 24; i++)
+		{
+			Klocek kloc = new Klocek(0, i*20);
+			klocki.add(kloc);
+		}
+		for (int i = 0; i < 24; i++)
+		{
+			Klocek kloc = new Klocek(620, i*20);
+			klocki.add(kloc);
+		}
+	}
+}
+
 
 
 
@@ -37,6 +67,7 @@ public class Program extends JFrame implements KeyListener
     {      
 		Program okno = new Program(); 
 		okno.setVisible(true);
+		Plansza plansza = new Plansza();
     }
 	
 	public void paint(Graphics g) 
@@ -45,7 +76,13 @@ public class Program extends JFrame implements KeyListener
         super.paint(g);
 		Graphics2D g2d=(Graphics2D)g;
         g2d.fill(gracz);
-		//g.fillRect(10,10, 20, 20);
+		
+		for (Klocek cegla:Plansza.klocki)
+			{
+				System.out.println("jestem w liscie");
+				g2d.fill(cegla);
+			}
+		//g.fillRect(plansza);
     }
 
     public void keyTyped(KeyEvent e) {        }

@@ -118,9 +118,11 @@ public class Program extends JFrame implements KeyListener
 	{
 		super.paint(g);
 		Graphics2D g2d=(Graphics2D)g;
-        g2d.fill(gracz);
+        g2d.setColor(Color.GREEN);
+		g2d.fill(gracz);
 		for (Klocek cegla:Plansza.klocki)
 			{
+				g2d.setColor(Color.DARK_GRAY);
 				g2d.fill(cegla);
 			}
 		if (bomba != null)
@@ -139,7 +141,7 @@ public class Program extends JFrame implements KeyListener
 						//System.out.println("stawiam bombke");
 						//bomba = 1;
 						//bombka.ustawBombe(gracz.x+15, gracz.y + 40);
-						bomba = new Bomba(gracz.x + 15, gracz.y + 15);
+						bomba = new Bomba(gracz.x + 25, gracz.y + 25);
 						}		
 						break;
                 case 'w':
